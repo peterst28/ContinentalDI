@@ -18,15 +18,20 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC dbutils.widgets.text('username', get_user_name())
+-- MAGIC spark.conf.set("myconf.username", get_user_name())
 
 -- COMMAND ----------
 
-create schema ${username}
+-- MAGIC %python
+-- MAGIC print(f'Creating schema "hive_metastore.{get_user_name()}"')
 
 -- COMMAND ----------
 
-CREATE TABLE ${username}.airlines_pt0_csv
+create schema if not exists hive_metastore.${myconf.username}
+
+-- COMMAND ----------
+
+CREATE TABLE hive_metastore.${myconf.username}.airlines_pt0_csv
 USING
   CSV
 LOCATION
@@ -37,4 +42,8 @@ OPTIONS
 
 -- COMMAND ----------
 
-SELECT * FROM ${username}.airlines_pt0_csv
+SELECT * FROM ${myconf.username}.airlines_pt0_csv
+
+-- COMMAND ----------
+
+

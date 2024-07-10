@@ -11,11 +11,11 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC dbutils.widgets.text('username', get_user_name())
+-- MAGIC sql(f'use hive_metastore.{get_user_name()}')
 
 -- COMMAND ----------
 
-SELECT * FROM ${username}.Airlines_gold
+SELECT * FROM Airlines_gold
 
 -- COMMAND ----------
 
