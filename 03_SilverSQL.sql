@@ -4,7 +4,7 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC sql(f'use hive_metastore.{get_user_name()}')
+-- MAGIC sql(f'use sternp.{get_user_name()}')
 
 -- COMMAND ----------
 

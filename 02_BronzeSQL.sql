@@ -4,12 +4,19 @@
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC sql(f'use hive_metastore.{get_user_name()}')
+-- MAGIC schema_name = f"sternp.{get_user_name()}"
+-- MAGIC print(f'Creating schema "{schema_name}"')
+-- MAGIC sql(f'create schema if not exists {schema_name}')
+-- MAGIC sql(f'use {schema_name}')
 
 -- COMMAND ----------
 
 CREATE TABLE Airlines_Bronze AS
-SELECT * FROM airlines_pt0_csv
+SELECT * FROM read_files(
+  '/Volumes/sternp/tmp/volume/airlines',
+  format => 'csv',
+  header => true
+)
 
 -- COMMAND ----------
 
@@ -17,15 +24,11 @@ SELECT * FROM Airlines_Bronze
 
 -- COMMAND ----------
 
-describe detail airlines_pt0_csv
-
--- COMMAND ----------
-
 describe detail Airlines_Bronze
 
 -- COMMAND ----------
 
--- MAGIC %fs ls /user/hive/warehouse/peterstern.db/airlines_bronze
+-- MAGIC %fs ls /tmp/peter.stern@databricks.com/airlines
 
 -- COMMAND ----------
 
