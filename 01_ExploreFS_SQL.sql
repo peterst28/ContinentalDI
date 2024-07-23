@@ -15,4 +15,14 @@ SELECT * FROM read_files(
 
 -- COMMAND ----------
 
+-- MAGIC %python
+-- MAGIC df = spark.read.format("csv").load("/Volumes/sternp/tmp/volume/airlines")
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC df.display()
+
+-- COMMAND ----------
+
 
