@@ -20,6 +20,22 @@ SELECT * FROM read_files(
 
 -- COMMAND ----------
 
+CREATE TABLE Airlines_Bronze (Year INT, ...)
+
+-- COMMAND ----------
+
+INSERT INTO Airlines_Bronze SELECT * FROM read_files(
+  '/Volumes/sternp/tmp/volume/airlines',
+  format => 'csv',
+  header => true
+)
+
+-- COMMAND ----------
+
+describe Airlines_Bronze
+
+-- COMMAND ----------
+
 SELECT * FROM Airlines_Bronze
 
 -- COMMAND ----------
@@ -29,7 +45,3 @@ describe detail Airlines_Bronze
 -- COMMAND ----------
 
 -- MAGIC %fs ls /tmp/peter.stern@databricks.com/airlines
-
--- COMMAND ----------
-
-

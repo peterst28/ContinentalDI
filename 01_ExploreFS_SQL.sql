@@ -16,7 +16,7 @@ SELECT * FROM read_files(
 -- COMMAND ----------
 
 -- MAGIC %python
--- MAGIC df = spark.read.format("csv").load("/Volumes/sternp/tmp/volume/airlines")
+-- MAGIC df = spark.read.format("csv").option('Header', True).load("/Volumes/sternp/tmp/volume/airlines")
 
 -- COMMAND ----------
 

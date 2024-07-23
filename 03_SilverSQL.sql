@@ -26,4 +26,16 @@ SELECT ArrDelay, DepDelay, WasLate FROM Airlines_Silver
 
 -- COMMAND ----------
 
+-- MAGIC %python
+-- MAGIC spark.table('Airlines_Silver').display()
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC from pyspark.sql.functions import *
+-- MAGIC
+-- MAGIC spark.table('Airlines_Silver').withColumn('WasLate', col('ArrDelay') > 0).display()
+
+-- COMMAND ----------
+
 
