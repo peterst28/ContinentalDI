@@ -16,7 +16,11 @@ CREATE VOLUME IF NOT EXISTS sternp.tmp.volume
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE sternp.tmp.airlines AS
-SELECT * FROM csv.`/Volumes/sternp/tmp/volume/airlines`
+SELECT * FROM read_files(
+  '/Volumes/sternp/tmp/volume/airlines',
+  format => 'csv',
+  header => true
+)
 
 -- COMMAND ----------
 
